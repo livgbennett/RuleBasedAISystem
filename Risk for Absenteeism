@@ -1,0 +1,66 @@
+def evaluateAbsenteeism(ID, reasonForAbsence, monthOfAbsence, dayOfWeek, season, 
+                         transportationExpense, distanceFromResidenceToWork, serviceTime, 
+                         age, workloadAveragePerDay, hitTarget, disciplinaryFailure, 
+                         education, socialDrinker, socialSmoker, pet, weight, height, 
+                         bodyMassIndex, absenteeismInHours):
+    
+    # Rule 1: High absenteeism due to health reasons
+    if reasonForAbsence == "illness" and absenteeismInHours > 20:
+        if bodyMassIndex >= 30:
+            return "Employee {ID}: High absenteeism risk due to health issues (potential obesity)."
+        if age > 50 and absenteeismInHours > 40:
+            return "Employee {ID}: High absenteeism risk due to age-related health issues."
+
+    # Rule 2: Absenteeism due to transportation issues
+    if reasonForAbsence == "transportation" and distanceFromResidenceToWork > 30:
+        return "Employee {ID}: Moderate absenteeism risk due to long commute and transportation issues."
+
+    # Rule 3: Seasonal absenteeism
+    if season == "Winter" and reasonForAbsence == "illness" and absenteeismInHours > 10:
+        return "Employee {ID}: Moderate absenteeism risk due to seasonal health issues (e.g., colds, flu)."
+
+    # Rule 4: Performance-related absenteeism
+    if not hitTarget and disciplinaryFailure:
+        return "Employee {ID}: High absenteeism risk due to performance and disciplinary issues."
+
+    # Rule 5: Lifestyle-related absenteeism
+    if socialDrinker or socialSmoker:
+        if absenteeismInHours > 15:
+            return "Employee {ID}: Moderate absenteeism risk due to lifestyle factors (drinking/smoking)."
+
+    # Rule 6: Workload-related absenteeism
+    if workloadAveragePerDay > 9 and absenteeismInHours > 20:
+        return "Employee {ID}: High absenteeism risk due to excessive workload and burnout."
+
+    # Rule 7: Low absenteeism risk
+    if absenteeismInHours < 5:
+        return "Employee {ID}: Low absenteeism risk. Employee is consistent and reliable."
+
+    # General case
+    return "Employee {ID}: Absenteeism cause unclear. Additional data may be required."
+
+# Example 
+analysis = evaluateAbsenteeism(
+    ID=101, 
+    reasonForAbsence="illness", 
+    monthOfAbsence=12, 
+    dayOfWeek="Monday", 
+    season="Winter", 
+    transportationExpense=300, 
+    distanceFromResidenceToWork=15, 
+    serviceTime=10, 
+    age=45, 
+    workloadAveragePerDay=8.5, 
+    hitTarget=True, 
+    disciplinaryFailure=False, 
+    education=2, 
+    socialDrinker=True, 
+    socialSmoker=False, 
+    pet=2, 
+    weight=85, 
+    height=1.75, 
+    bodyMassIndex=27.8, 
+    absenteeism_in_hours=25
+)
+
+print(analysis)
