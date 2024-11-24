@@ -1,0 +1,37 @@
+def diagnoseDiabetes(age, gender, polyuria, polydipsia, sudden_weight_loss, weakness,
+                      polyphagia, genital_thrush, visual_blurring, itching, irritability,
+                      delayed_healing, partial_paresis, muscle_stiffness, alopecia, obesity):
+   
+    # High-risk symptoms for diabetes
+    highRiskSymptoms = [
+        polyuria, polydipsia, sudden_weight_loss, weakness, polyphagia, genital_thrush,
+        delayed_healing, partial_paresis
+    ]
+
+    # Rule 1: High risk of diabetes
+    if sum(highRiskSymptoms) >= 3:
+        return "High risk of diabetes. See a doctor immediately"
+
+    # Rule 2: Moderate risk with additional factors
+    moderateRiskSymptoms = [
+        visual_blurring, itching, irritability, muscle_stiffness, alopecia
+    ]
+    if sum(moderateRiskSymptoms) >= 2 and (age >= 45 or obesity):
+        return "Moderate risk of diabetes. Consider a screening test and lifestyle changes."
+
+    # Rule 3: Age-related risk
+    if age >= 50 and obesity:
+        return "Increased risk of diabetes due to age and obesity. Regular screening recommended."
+
+    # Rule 4: Low risk
+    return "Low risk of diabetes based on current symptoms. Maintain a healthy lifestyle."
+
+
+diagnosis = diagnoseDiabetes(
+    age=55, gender="male", polyuria=True, polydipsia=True, sudden_weight_loss=True,
+    weakness=False, polyphagia=True, genital_thrush=False, visual_blurring=False,
+    itching=False, irritability=False, delayed_healing=True, partial_paresis=False,
+    muscle_stiffness=False, alopecia=False, obesity=True
+)
+ 
+print("Diagnosis:", diagnosis)
