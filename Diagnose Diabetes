@@ -26,7 +26,7 @@ def diagnoseDiabetes(age, gender, polyuria, polydipsia, sudden_weight_loss, weak
     # Rule 4: Low risk
     return "Low risk of diabetes based on current symptoms. Maintain a healthy lifestyle."
 
-
+#Example
 diagnosis = diagnoseDiabetes(
     age=55, gender="male", polyuria=True, polydipsia=True, sudden_weight_loss=True,
     weakness=False, polyphagia=True, genital_thrush=False, visual_blurring=False,
